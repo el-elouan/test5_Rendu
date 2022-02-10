@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<title>MVC-Reservation</title>
+<!--  style css du site -->
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+     <!--bibliotheque jquery  -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+	<!--bibliotheque jquery  -->
+	<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<script LANGUAGE="javascript">
+ $(document).ready(function() {
+  
+      $(".verif_form_livre").submit(function(){  
+
+
+  $.post($(this).attr("action"), $(this).serialize(), function(data){
+	  var $e = $("#messagee");
+      // traitement  exécuter une fois le formulaire posté.
+      //data est sous la forme: insert (voir verifController.php)
+      var ok=data.substr(0,6);
+      var token=data.substr(3,data.length);
+      if(ok=="insert"){
+     $(location).attr('href',"index.php?operation=insert&action=validLivre&id="+token);
+     //TODO implementer le retour assynchrone de la validation du formulaire
+      }
+      else{
+  
+	 $e.text(data).show();
+  }
+  });
+  return false;
+
+ 
+});
+
+
+});
+
+</script> 
+</head>
+<body>
